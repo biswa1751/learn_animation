@@ -23,7 +23,7 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin{
       vsync: this,
       duration: Duration(seconds: 1)
     );
-    _animation=Tween<double>(begin: 0.0,end: 300).animate(_animationController)..addStatusListener((status){
+    _animation=CurvedAnimation(curve: Curves.bounceInOut,parent: _animationController)..addStatusListener((status){
       if(status==AnimationStatus.completed)
       {
         _animationController.reverse();
@@ -50,13 +50,13 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin{
     //TODO: 2.3:Returning Animated Logo Class
     //TODO: 4.3:return The Grow Transition
     return Center(
-      child: GrowTransition(
-        animation: _animation,
-        child: LogoWidget(),
-      ),
-      // child: AnimatedLogo(
+      // child: GrowTransition(
       //   animation: _animation,
-      // ),
+      //   child: LogoWidget(),
+      // ),0
+      child: AnimatedLogo(
+        animation: _animation,
+      ),
       // child: Container(
       //   margin: EdgeInsets.symmetric(vertical: 10),
       //   //TODO: 1.3: Updating The Size of Flutter logo

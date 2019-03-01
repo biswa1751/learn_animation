@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 class AnimatedLogo extends AnimatedWidget {
   //TODO: 5.1:Giving Size and Opacity Tween
+  final _sizeTween=Tween<double>(begin: 0.0,end: 300.0);
+  final _opacityTween=Tween<double>(begin: 0.0,end: 1.0);
   AnimatedLogo({Key key, Animation<double> animation})
       : super(key: key, listenable: animation);
 
@@ -9,10 +11,13 @@ class AnimatedLogo extends AnimatedWidget {
     //TODO: 5.2:Making Opacity Widget
     return Center(
       //TODO: 2.1: Making Animated logo Classand giving Flutter Logo
-      child: Container(
-        height: animation.value,
-        width: animation.value,
-        child: FlutterLogo(),
+      child: Opacity(
+        opacity: _opacityTween.evaluate(animation),
+              child: Container(
+          height: _sizeTween.evaluate(animation),
+          width: _sizeTween.evaluate(animation),
+          child: FlutterLogo(),
+        ),
       ),
     );
   }
